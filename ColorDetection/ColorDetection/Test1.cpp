@@ -20,6 +20,7 @@ int maxAreaIndex(vector<double> );
 vector<double> getCentroid(double , double );
 double average(vector<double> );
 void setColorFromClick(Mat ,int* ,Point );
+void changeTolerance(char , int* );
 
 int main() 
 {
@@ -30,6 +31,7 @@ int main()
 	Mat Isegmented;
 	Mat HSVframe;
 	Mat strel = getStructuringElement(MORPH_ELLIPSE, Size(7,7));
+	char k;
 
 	int color[] = {127,242,195};
 	int tolerance[] = {15,15,15};
@@ -44,7 +46,7 @@ int main()
 		cam >> colorFrame;
 		//colorFrame = normalizeImage(colorFrame);
 
-		//setMouseCallback("Main camera",mouseHandler,(void*)(&p));
+		setMouseCallback("Main camera",mouseHandler,(void*)(&p));
 		
 		if (p.x != 0 && p.y != 0) {
 			//showValue(colorFrame,p);
@@ -59,7 +61,7 @@ int main()
 		Isegmented = segmentColor(Iblurred,color,tolerance);
 		dilate(Isegmented,Isegmented,strel);
 		erode(Isegmented,Isegmented,strel);
-		//imshow("Segmented video",Isegmented);
+		imshow("Segmented video",Isegmented);
 
 		drawMoments(Isegmented,colorFrame);
 		imshow("Main camera",colorFrame);
@@ -75,7 +77,8 @@ int main()
 		//drawMoments(Isegmented,HSVframe);
 		imshow("Main HSV camera",HSVframe);
 		*/
-		waitKey(30);
+		k = waitKey(30);
+		changeTolerance(k,tolerance);
 	}
 
 	destroyWindow("Main camera");
@@ -255,6 +258,7 @@ int maxAreaIndex(vector<double> areas)
 	return maxIndex;
 }
 
+// TO-DO: Fix (Not working).
 vector<double> getCentroid(double newX, double newY)
 {
 	static vector<double> centroidsX;
@@ -322,4 +326,19 @@ void setColorFromClick(Mat frame,int* color,Point p)
 
 	cout << "[" << color[0] << "," << color[1] << "," << color[2] << "]\n";
 
+}
+
+void changeTolerance(char k, int* tolerance)
+{
+	if (k == '+')
+	{
+		tolerance[0] += 1;
+		tolerance[1] += 1;
+		tolerance[2] += 1;
+	} else if (k == '-')
+	{
+		tolerance[0] -= 1;
+		tolerance[1] -= 1;
+		tolerance[2] -= 1;
+	}
 }

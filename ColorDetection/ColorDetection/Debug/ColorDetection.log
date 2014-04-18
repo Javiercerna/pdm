@@ -1,25 +1,12 @@
-﻿Compilación iniciada a las 18/04/2014 12:25:00 p.m..
+﻿Compilación iniciada a las 18/04/2014 12:42:39 p.m..
      1>Proyecto "C:\Users\Javier\github\pdm\ColorDetection\ColorDetection\ColorDetection.vcxproj" en el nodo 2 (build destinos).
      1>InitializeBuildStatus:
          Se creará "Debug\ColorDetection.unsuccessfulbuild" porque se especificó "AlwaysCreate".
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ID:\opencv\build\include\opencv2 /ID:\opencv\build\include /ID:\opencv\build\include\opencv /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Test1.cpp
-         Test1.cpp
-     1>d:\opencv\build\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : vea la declaración de 'fopen'
-     1>c:\users\javier\github\pdm\colordetection\colordetection\test1.cpp(162): warning C4018: '<' : no coinciden signed/unsigned
-     1>c:\users\javier\github\pdm\colordetection\colordetection\test1.cpp(172): warning C4018: '<' : no coinciden signed/unsigned
-     1>c:\users\javier\github\pdm\colordetection\colordetection\test1.cpp(205): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
-     1>c:\users\javier\github\pdm\colordetection\colordetection\test1.cpp(205): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
-     1>c:\users\javier\github\pdm\colordetection\colordetection\test1.cpp(246): warning C4018: '<' : no coinciden signed/unsigned
-     1>c:\users\javier\github\pdm\colordetection\colordetection\test1.cpp(288): warning C4018: '<' : no coinciden signed/unsigned
-     1>c:\users\javier\github\pdm\colordetection\colordetection\test1.cpp(300): warning C4018: '<' : no coinciden signed/unsigned
+         Todas las salidas están actualizadas.
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Javier\github\pdm\ColorDetection\Debug\ColorDetection.exe" /NOLOGO /LIBPATH:D:\opencv\build\x86\vc10\bin /LIBPATH:D:\opencv\build\x86\vc10\lib opencv_core248d.lib opencv_imgproc248d.lib opencv_highgui248d.lib opencv_ml248d.lib opencv_video248d.lib opencv_features2d248d.lib opencv_calib3d248d.lib opencv_objdetect248d.lib opencv_contrib248d.lib opencv_legacy248d.lib opencv_flann248d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\ColorDetection.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Javier\github\pdm\ColorDetection\Debug\ColorDetection.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Javier\github\pdm\ColorDetection\Debug\ColorDetection.lib" /MACHINE:X86 Debug\Test1.obj
-         LINK : no se encontró C:\Users\Javier\github\pdm\ColorDetection\Debug\ColorDetection.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
+         Todas las salidas están actualizadas.
          ColorDetection.vcxproj -> C:\Users\Javier\github\pdm\ColorDetection\Debug\ColorDetection.exe
-       Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\Javier\github\pdm\ColorDetection\Debug\ColorDetection.exe;#1" /manifest Debug\ColorDetection.exe.intermediate.manifest
        FinalizeBuildStatus:
          Se eliminará el archivo "Debug\ColorDetection.unsuccessfulbuild".
          Aplicando tarea Touch a "Debug\ColorDetection.lastbuildstate".
@@ -27,4 +14,4 @@
 
 Compilación correcta.
 
-Tiempo transcurrido 00:00:02.39
+Tiempo transcurrido 00:00:00.06
