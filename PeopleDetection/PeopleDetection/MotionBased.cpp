@@ -15,7 +15,7 @@ int blurSize = 5;
 // Methods
 void detectMotion();
 void processForeground();
-void drawMoments();
+void drawMoments(Mat imageBW, Mat &original);
 int maxAreaIndex(vector<double> areas);
 void keyPressed(char k);
 
@@ -39,26 +39,29 @@ int main()
 
 void detectMotion() 
 {	
+	Mat maskedFrame;
 	blur(colorFrame,colorFrame,Point(blurSize,blurSize));
 	pMOG->operator()(colorFrame, foreground);
 
 	processForeground();
 
+	colorFrame.copyTo(maskedFrame,foreground);
 	imshow("FG Mask MOG", foreground);
+	imshow("Color frame masked",maskedFrame);
 }
 
 void processForeground()
 {
-	drawMoments();
+	drawMoments(foreground,colorFrame);
 }
 
-void drawMoments() 
+void drawMoments(Mat imageBW, Mat &original) 
 {
 	vector<vector<Point> > contours;
 	vector<Vec4i> hierarchy;
 	RNG rng(12345);
 
-	findContours(foreground, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0) );
+	findContours(imageBW, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0) );
 	vector<Moments> mu; 
 
 	for( int i = 0; i < contours.size(); i++ )
@@ -77,7 +80,7 @@ void drawMoments()
 		cY.push_back(mu[i].m01/mu[i].m00);
 		area.push_back(mu[i].m00);
 	}
-	
+
 	int maxIndex = maxAreaIndex(area);
 
 	vector<double> centroid;
@@ -87,7 +90,7 @@ void drawMoments()
 	if (maxIndex != -1) 
 	{
 		cout << area[maxIndex] << endl;
-		circle(colorFrame,Point(cX[maxIndex],cY[maxIndex]),20, Scalar(0,0,255),-1);
+		circle(original,Point(cX[maxIndex],cY[maxIndex]),20, Scalar(0,0,255),-1);
 	}
 	
 	cout << "New loop" << endl;
