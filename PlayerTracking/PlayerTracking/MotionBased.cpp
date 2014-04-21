@@ -23,7 +23,6 @@ double leftHand[] = {0,0,0};
 double rightHand[] = {0,0,0};
 
 // Methods
-void mouseEvents(Point mousePoint);
 void trackPlayer();
 void getForeground();
 void processForeground();
@@ -46,8 +45,14 @@ int main()
 	while (true)
 	{
 		cam >> colorFrame;
-		
-		mouseEvents(mousePoint);
+
+		setMouseCallback("Main camera",mouseHandler,(void*)(&mousePoint));
+
+		if (mousePoint.x != 0 && mousePoint.y != 0) {
+			setColorFromClick(colorFrame,tshirtColor,mousePoint);
+			mousePoint.x = 0;
+			mousePoint.y = 0;
+		}
 
 		trackPlayer();
 
@@ -57,15 +62,6 @@ int main()
 		keyPressed(key);
 	}
 	return 0;
-}
-
-void mouseEvents(Point mousePoint)
-{
-	setMouseCallback("Main camera",mouseHandler,(void*)(&mousePoint));
-
-	if (mousePoint.x != 0 && mousePoint.y != 0) {
-		setColorFromClick(colorFrame,tshirtColor,mousePoint);
-	}
 }
 
 void trackPlayer() 
@@ -100,8 +96,8 @@ void processForeground()
 	tshirtMask = segmentColor(foreground,tshirtColor,tshirtTolerance);
 	imshow("Masked segmentation",tshirtMask);
 
-	//dilate(tshirtMask,tshirtMask,strel);
-	//erode(tshirtMask,tshirtMask,strel);
+	dilate(tshirtMask,tshirtMask,strel);
+	erode(tshirtMask,tshirtMask,strel);
 
 	drawMoments(tshirtMask,colorFrame,tshirt);
 	cout << "Tshirt properties:" << endl;
@@ -162,13 +158,14 @@ void drawMoments(Mat imageBW, Mat &original, double* object)
 {
 	vector<vector<Point> > contours;
 	vector<Vec4i> hierarchy;
-	RNG rng(12345);
 
 	findContours(imageBW, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0) );
 	vector<Moments> mu; 
+	vector<Rect> boundRect(contours.size());
 
 	for( int i = 0; i < contours.size(); i++ )
 	{ 
+		boundRect[i] = boundingRect(Mat(contours[i]));
 		mu.push_back(moments(contours[i], false)); 
 	}
 
@@ -195,6 +192,7 @@ void drawMoments(Mat imageBW, Mat &original, double* object)
 		object[2] = area[maxIndex];
 
 		circle(original,Point(cX[maxIndex],cY[maxIndex]),20, Scalar(0,0,255),-1);
+		rectangle(original, boundRect[maxIndex].tl(), boundRect[maxIndex].br(), Scalar(255,0,0), 2, 8, 0 );
 	}
 	
 	cout << "New loop" << endl;
@@ -245,6 +243,7 @@ void setColorFromClick(Mat frame,int* color,Point p)
 	color[0] = (int)channels[0].at<uchar>(p);
 	color[1] = (int)channels[1].at<uchar>(p);
 	color[2] = (int)channels[0].at<uchar>(p);
+	cout << "[" << color[0] << "," << color[1] << "," << color[2] << "]" << endl;
 }
 
 void keyPressed(char k)
