@@ -1,4 +1,4 @@
-﻿Compilación iniciada a las 21/04/2014 10:49:12 a.m..
+﻿Compilación iniciada a las 21/04/2014 07:53:02 p.m..
      1>Proyecto "C:\Users\Javier\github\pdm\PlayerTracking\PlayerTracking\PlayerTracking.vcxproj" en el nodo 2 (build destinos).
      1>InitializeBuildStatus:
          Se creará "Debug\PlayerTracking.unsuccessfulbuild" porque se especificó "AlwaysCreate".
@@ -7,11 +7,11 @@
          MotionBased.cpp
      1>d:\opencv\build\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : vea la declaración de 'fopen'
-     1>c:\users\javier\github\pdm\playertracking\playertracking\motionbased.cpp(166): warning C4018: '<' : no coinciden signed/unsigned
-     1>c:\users\javier\github\pdm\playertracking\playertracking\motionbased.cpp(177): warning C4018: '<' : no coinciden signed/unsigned
-     1>c:\users\javier\github\pdm\playertracking\playertracking\motionbased.cpp(194): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
-     1>c:\users\javier\github\pdm\playertracking\playertracking\motionbased.cpp(194): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
-     1>c:\users\javier\github\pdm\playertracking\playertracking\motionbased.cpp(206): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\users\javier\github\pdm\playertracking\playertracking\motionbased.cpp(178): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\users\javier\github\pdm\playertracking\playertracking\motionbased.cpp(189): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\users\javier\github\pdm\playertracking\playertracking\motionbased.cpp(206): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\playertracking\playertracking\motionbased.cpp(206): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\playertracking\playertracking\motionbased.cpp(218): warning C4018: '<' : no coinciden signed/unsigned
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Javier\github\pdm\PlayerTracking\Debug\PlayerTracking.exe" /NOLOGO /LIBPATH:D:\opencv\build\x86\vc10\bin /LIBPATH:D:\opencv\build\x86\vc10\lib opencv_core248d.lib opencv_imgproc248d.lib opencv_highgui248d.lib opencv_ml248d.lib opencv_video248d.lib opencv_features2d248d.lib opencv_calib3d248d.lib opencv_objdetect248d.lib opencv_contrib248d.lib opencv_legacy248d.lib opencv_flann248d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\PlayerTracking.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Javier\github\pdm\PlayerTracking\Debug\PlayerTracking.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Javier\github\pdm\PlayerTracking\Debug\PlayerTracking.lib" /MACHINE:X86 Debug\MotionBased.obj
          LINK : no se encontró C:\Users\Javier\github\pdm\PlayerTracking\Debug\PlayerTracking.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
@@ -25,4 +25,4 @@
 
 Compilación correcta.
 
-Tiempo transcurrido 00:00:02.51
+Tiempo transcurrido 00:00:04.73

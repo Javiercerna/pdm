@@ -7,7 +7,7 @@ using namespace std;
 using namespace cv;
 
 // Constants
-const int BLUR_SIZE = 5;
+const int BLUR_SIZE = 3;
 const Mat strel = getStructuringElement(MORPH_ELLIPSE, Size(7,7));
 
 // Global variables
@@ -15,7 +15,7 @@ Mat colorFrame;
 Mat foreground;
 Ptr<BackgroundSubtractor> pMOG;
 int tshirtColor[] = {127,242,195};
-int tshirtTolerance[] = {50,50,50};
+int tshirtTolerance[] = {20,50,50};
 int handColor[] = {1,2,3};
 int handTolerance[] = {50,50,50};
 double tshirt[] = {0,0,0}; // [0] = cX, [1] = cY, [2] = area
@@ -46,6 +46,7 @@ int main()
 	{
 		cam >> colorFrame;
 
+		cvtColor(colorFrame,colorFrame,CV_BGR2HSV);
 		setMouseCallback("Main camera",mouseHandler,(void*)(&mousePoint));
 
 		if (mousePoint.x != 0 && mousePoint.y != 0) {
@@ -125,6 +126,7 @@ void processForeground()
 Mat segmentColor(Mat inputImage, int color[], int tolerance[]) 
 {
 	Mat outputImage;
+	/*
 	Mat Ired;
 	Mat Igreen;
 	Mat Iblue;
@@ -144,7 +146,17 @@ Mat segmentColor(Mat inputImage, int color[], int tolerance[])
 	Ired.release();
 	Igreen.release();
 	Iblue.release();
+	
+	*/
+	Scalar lBound = Scalar(max(0,color[0]-tolerance[0]), \
+						   max(0,color[1]-tolerance[1]), \
+						   max(0,color[2]-tolerance[2]));
+	Scalar uBound = Scalar(min(255,color[0]+tolerance[0]), \
+		                   min(255,color[1]+tolerance[1]), \
+						   min(255,color[2]+tolerance[2]));
 
+	inRange(inputImage,lBound,uBound,outputImage);
+		
 	return outputImage;
 }
 
@@ -242,7 +254,7 @@ void setColorFromClick(Mat frame,int* color,Point p)
 	split(frame,channels);
 	color[0] = (int)channels[0].at<uchar>(p);
 	color[1] = (int)channels[1].at<uchar>(p);
-	color[2] = (int)channels[0].at<uchar>(p);
+	color[2] = (int)channels[2].at<uchar>(p);
 	cout << "[" << color[0] << "," << color[1] << "," << color[2] << "]" << endl;
 }
 
