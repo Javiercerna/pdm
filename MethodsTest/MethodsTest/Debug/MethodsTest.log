@@ -1,11 +1,11 @@
-﻿Compilación iniciada a las 01/05/2014 02:58:49 p.m..
+﻿Compilación iniciada a las 01/05/2014 06:54:36 p.m..
      1>Proyecto "C:\Users\Javier\github\pdm\MethodsTest\MethodsTest\MethodsTest.vcxproj" en el nodo 2 (build destinos).
      1>InitializeBuildStatus:
          Se creará "Debug\MethodsTest.unsuccessfulbuild" porque se especificó "AlwaysCreate".
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ID:\opencv\build\include\opencv2 /ID:\opencv\build\include /ID:\opencv\build\include\opencv /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt NormalizeColorsTest.cpp
-         NormalizeColorsTest.cpp
-     1>c:\users\javier\github\pdm\methodstest\methodstest\normalizecolorstest.cpp(56): warning C4129: 'V' : secuencia de escape de carácter no reconocida
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ID:\opencv\build\include\opencv2 /ID:\opencv\build\include /ID:\opencv\build\include\opencv /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt SegmentColorTest.cpp
+         SegmentColorTest.cpp
+     1>c:\users\javier\github\pdm\methodstest\methodstest\segmentcolortest.cpp(83): warning C4129: 'M' : secuencia de escape de carácter no reconocida
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Javier\github\pdm\MethodsTest\Debug\MethodsTest.exe" /NOLOGO /LIBPATH:D:\opencv\build\x86\vc10\bin /LIBPATH:D:\opencv\build\x86\vc10\lib opencv_core248d.lib opencv_imgproc248d.lib opencv_highgui248d.lib opencv_ml248d.lib opencv_video248d.lib opencv_features2d248d.lib opencv_calib3d248d.lib opencv_objdetect248d.lib opencv_contrib248d.lib opencv_legacy248d.lib opencv_flann248d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\MethodsTest.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Javier\github\pdm\MethodsTest\Debug\MethodsTest.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Javier\github\pdm\MethodsTest\Debug\MethodsTest.lib" /MACHINE:X86 Debug\ColorTypesTest.obj
          Debug\Methods.obj
@@ -23,4 +23,4 @@
 
 Compilación correcta.
 
-Tiempo transcurrido 00:00:01.92
+Tiempo transcurrido 00:00:01.90

@@ -1,6 +1,7 @@
 #include <cv.h>
 #include "Methods.h"
 #include <highgui.h>
+
 using namespace cv;
 
 Mat normalizeColors(Mat m)
@@ -23,24 +24,32 @@ Mat normalizeColors(Mat m)
 	return output;
 }
 
-Mat segmentColor(Mat inputImage, int color[], int tolerance[]) 
+Mat segmentColor(Mat inputImage, Scalar color, Scalar tolerance) 
 {
 	Mat outputImage;
-	Mat Ired;
-	Mat Igreen;
-	Mat Iblue;
-	vector<Mat> channels;
 	
-	split(inputImage,channels);
-	inRange(channels[0],max(0,color[0]-tolerance[0]),min(255,color[0]+tolerance[0]),Iblue);
-	inRange(channels[1],max(0,color[1]-tolerance[1]),min(255,color[1]+tolerance[1]),Igreen);
-	inRange(channels[2],max(0,color[2]-tolerance[2]),min(255,color[2]+tolerance[2]),Ired);
+	Scalar zero(0,0,0);
+	Scalar one(255,255,255);
 	
-	outputImage = Iblue & Igreen & Ired;
-
-	Ired.release();
-	Igreen.release();
-	Iblue.release();
-
+	inRange(inputImage,max(zero,color-tolerance),min(one,color+tolerance),outputImage);
+	
 	return outputImage;
+}
+
+Scalar max(Scalar a, Scalar b)
+{
+	Scalar out;
+	out[0] = max(a[0],b[0]);
+	out[1] = max(a[1],b[1]);
+	out[2] = max(a[2],b[2]);
+	return out;
+}
+
+Scalar min(Scalar a, Scalar b)
+{
+	Scalar out;
+	out[0] = min(a[0],b[0]);
+	out[1] = min(a[1],b[1]);
+	out[2] = min(a[2],b[2]);
+	return out;
 }
