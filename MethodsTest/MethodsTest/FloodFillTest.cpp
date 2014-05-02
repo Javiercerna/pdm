@@ -1,4 +1,3 @@
-/*
 #include <cv.h>
 #include <highgui.h>
 #include <iostream>
@@ -15,24 +14,33 @@ const Mat STREL = getStructuringElement(MORPH_ELLIPSE, Size(7,7));
 // Global variables
 Mat frame;
 Mat frameHSV;
+Mat mask;
 Mat segmented;
-int option = 3;
+int option = 2;
 
 int main()
 {
+	
 	if (option == 1)
 	{
 		// Separated colors image
 		Mat rgb = imread("rgbColor.png");
 		
-		Scalar color(255,0,0);
-		Scalar tolerance(0,0,50);
+		Scalar maxLoDiff(20,20,20);
+		Scalar maxHiDiff(20,20,20);
 
+		Point p(0,0);
 		while (true)
 		{
+			setMouseCallback("Image",mouseHandler,(void*)(&p));
+			if (p.x != 0 && p.y != 0)
+			{
+				mask = fillMask(rgb,p,maxLoDiff,maxHiDiff);
+				p.x = 0;
+				p.y = 0;
+				imshow("Mask",mask);
+			}
 			imshow("Image",rgb);
-			segmented = segmentColor(rgb,color,tolerance);
-			imshow("Segmented image",segmented);
 			waitKey(30);
 		}
 	} else if (option == 2)
@@ -40,15 +48,14 @@ int main()
 		// Camera taken images
 		Mat field = imread("rgb.png");
 
+		cvtColor(field,field,CV_BGR2HSV);	
+		
 		Scalar color1(20,20,130);
 		Scalar tolerance1(20,20,30);
 
-		Scalar color2(80,30,15);
-		Scalar tolerance2(30,10,10);
-
 		Scalar color1HSV(5,210,130);
 		Scalar tolerance1HSV(5,30,30);
-
+		
 		Mat shirt = imread("azul2.png");
 		
 		Scalar color3(210,120,70);
@@ -56,24 +63,20 @@ int main()
 
 		Scalar color3HSV(110,170,215);
 		Scalar tolerance3HSV(10,55,55);
-		
-		cvtColor(shirt,shirt,CV_BGR2HSV);
-			
+
+		//cvtColor(shirt,shirt,CV_BGR2HSV);
 		Point p(0,0);
 		while (true)
 		{
-			imshow("Image",shirt);
-			
 			setMouseCallback("Image",mouseHandler,(void*)(&p));
 			if (p.x != 0 && p.y != 0)
 			{
-				showColorFromClick(shirt,p);
+				mask = fillMask(shirt,p,tolerance3,tolerance3);
 				p.x = 0;
 				p.y = 0;
+				imshow("Mask",mask);
 			}
-
-			segmented = segmentColor(shirt,color3HSV,tolerance3HSV);
-			imshow("Segmented image",segmented);
+			imshow("Image",shirt);
 			waitKey(30);	
 		}
 	} else if (option == 3)
@@ -99,22 +102,15 @@ int main()
 			setMouseCallback("Main video",mouseHandler,(void*)(&p));
 			if (p.x != 0 && p.y != 0)
 			{
-				showColorFromClick(frame,p);
+				mask = fillMask(frameHSV,p,toleranceHSV,toleranceHSV);
 				p.x = 0;
 				p.y = 0;
+				imshow("Mask",mask);
 			}
-
-			segmented = segmentColor(frameHSV,colorHSV,toleranceHSV);
 			
-			erode(segmented,segmented,STREL);
-			dilate(segmented,segmented,STREL);
-
-			drawMoments(segmented,frame,1000);
-			
-			imshow("Segmented video",segmented);
 			imshow("Main video",frame);
 			
-			key = waitKey(1);
+			key = waitKey(30);
 			if (key == 'p')
 			{
 				break;
@@ -127,10 +123,11 @@ int main()
 			{
 				imshow("Main video",frame);
 				if (p.x != 0 && p.y != 0)
-				{
-					showColorFromClick(frame,p);
+				{	
+					mask = fillMask(frameHSV,p,toleranceHSV,toleranceHSV);
 					p.x = 0;
 					p.y = 0;
+					imshow("Mask",mask);
 				}
 				waitKey(30);
 			}
@@ -139,5 +136,3 @@ int main()
 
 	return 0;
 }
-
-*/

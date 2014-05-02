@@ -77,7 +77,7 @@ void drawMoments(Mat imageBW, Mat &original,double minArea)
 
 	for (int i = 0; i < contours.size(); i++)
 	{
-		if (mu[i].m01/mu[i].m00 > 200 && mu[i].m00 > minArea) 
+		if (mu[i].m01/mu[i].m00 > 0 && mu[i].m00 > minArea) // > 200 
 		{
 			boundRect.push_back(boundingRect(Mat(contours[i])));
 			cX.push_back(mu[i].m10/mu[i].m00);
@@ -85,7 +85,7 @@ void drawMoments(Mat imageBW, Mat &original,double minArea)
 			area.push_back(mu[i].m00);
 		}
 	}
- 
+	
 	for (int i = 0; i < area.size(); i++)
 	{
 		circle(original,Point(cX[i],cY[i]),20, Scalar(0,0,255),-1);
@@ -108,7 +108,62 @@ void drawMoments(Mat imageBW, Mat &original,double minArea)
 		rectangle(original, boundingRectangle, Scalar(255,0,0), 2, 8, 0 );
 	}
 	*/
+
+}
+
+void drawFilledMoments(Mat imageBW, Mat &original,double minArea) 
+{
+	vector<vector<Point> > contours;
+	vector<Vec4i> hierarchy;
 	
+	findContours(imageBW, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0) );
+	vector<Moments> mu; 
+	vector<Rect> boundRect;
+
+	for(int i = 0; i < contours.size(); i++ )
+	{ 
+		mu.push_back(moments(contours[i], false)); 
+	}
+
+	//Centroids 
+	vector<double> cX;
+	vector<double> cY;
+	vector<double> area;
+
+	for (int i = 0; i < contours.size(); i++)
+	{
+		if (mu[i].m01/mu[i].m00 > 0 && mu[i].m00 > minArea) // > 200 
+		{
+			boundRect.push_back(boundingRect(Mat(contours[i])));
+			cX.push_back(mu[i].m10/mu[i].m00);
+			cY.push_back(mu[i].m01/mu[i].m00);
+			area.push_back(mu[i].m00);
+		}
+	}
+	
+	for (int i = 0; i < area.size(); i++)
+	{
+		circle(original,Point(cX[i],cY[i]),20, Scalar(0,0,255),-1);
+		rectangle(original, boundRect[i], Scalar(255,0,0), 2, 8, 0 );
+	}
+
+	/*
+	int maxIndex = maxAreaIndex(area);
+	
+	if (maxIndex != -1 && area[maxIndex] > MIN_AREA) 
+	{
+		cout << area[maxIndex] << endl;
+
+		object[0] = cX[maxIndex];
+		object[1] = cY[maxIndex];
+		object[2] = area[maxIndex];
+
+		averageRectangle(boundRect[maxIndex]);
+		circle(original,Point(cX[maxIndex],cY[maxIndex]),20, Scalar(0,0,255),-1);
+		rectangle(original, boundingRectangle, Scalar(255,0,0), 2, 8, 0 );
+	}
+	*/
+
 }
 
 int maxAreaIndex(vector<double> areas)
@@ -150,4 +205,20 @@ void showColorFromClick(Mat m,Point p)
 	int	c3 = (int)channels[2].at<uchar>(p);
 	
 	cout << "[" << c1 << "," << c2 << "," << c3 << "]\n";
+}
+
+Mat fillMask(Mat frame,Point seed,Scalar maxLoDiff, Scalar maxHiDiff)
+{
+	int newMaskVal = 255;
+	Scalar newVal = Scalar( 120, 120, 120 );
+	Mat mask;
+
+	int connectivity = 8;
+	int flags = connectivity + (newMaskVal << 8 ) + FLOODFILL_FIXED_RANGE + FLOODFILL_MASK_ONLY;
+	Mat mask2 = Mat::zeros(frame.rows + 2, frame.cols + 2, CV_8UC1);
+
+	floodFill(frame, mask2, seed, newVal, 0, maxLoDiff, maxHiDiff, flags);
+	mask = mask2(Range(1, mask2.rows - 1), Range(1, mask2.cols - 1));
+	
+	return mask;
 }

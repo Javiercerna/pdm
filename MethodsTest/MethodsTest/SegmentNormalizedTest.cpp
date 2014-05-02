@@ -1,3 +1,4 @@
+/*
 #include <cv.h>
 #include <highgui.h>
 #include <iostream>
@@ -133,3 +134,4 @@ int main()
 
 	return 0;
 }
+*/

@@ -63,6 +63,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ColorTypesTest.cpp" />
+    <ClCompile Include="FloodFillTest.cpp" />
     <ClCompile Include="Methods.cpp" />
     <ClCompile Include="NormalizeColorsTest.cpp" />
     <ClCompile Include="SegmentColorTest.cpp" />
