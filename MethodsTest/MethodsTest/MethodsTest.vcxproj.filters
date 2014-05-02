@@ -30,6 +30,9 @@
     <ClCompile Include="SegmentColorTest.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="SegmentNormalizedTest.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Methods.h">

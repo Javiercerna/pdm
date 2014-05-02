@@ -1,3 +1,4 @@
+/*
 #include <cv.h>
 #include <highgui.h>
 #include <iostream>
@@ -143,27 +144,4 @@ int main()
 	return 0;
 }
 
-void mouseHandler(int event, int x, int y, int flags, void* param)
-{
-	switch(event){
-    case CV_EVENT_LBUTTONUP:
-		cv::Point* p = (cv::Point*)param;
-		p->x = x;
-		p->y = y;
-        break;
-    }
-}
-
-void showColorFromClick(Mat m,Point p)
-{
-	vector<Mat> channels;
-
-	split(m,channels);
-
-	int c1 = (int)channels[0].at<uchar>(p);
-	int c2 = (int)channels[1].at<uchar>(p);
-	int c3 = (int)channels[2].at<uchar>(p);
-
-	cout << "[" << c1 << "," << c2 << "," << c3 << "]\n";
-
-}
+*/

@@ -15,9 +15,9 @@ Mat normalizeColors(Mat m)
 	split(m,channels);
 
 	sum = channels[0] + channels[1] + channels[2];
-	channels[0] = channels[0]/sum;
-	channels[1] = channels[1]/sum;
-	channels[2] = channels[2]/sum;
+	channels[0] = (int)255*channels[0]/sum;
+	channels[1] = (int)255*channels[1]/sum;
+	channels[2] = (int)255*channels[2]/sum;
 	
 	merge(channels,output);
 
@@ -126,4 +126,28 @@ int maxAreaIndex(vector<double> areas)
 	}
 
 	return maxIndex;
+}
+
+void mouseHandler(int event, int x, int y, int flags, void* param)
+{
+	switch(event){
+    case CV_EVENT_LBUTTONUP:
+		cv::Point* p = (cv::Point*)param;
+		p->x = x;
+		p->y = y;
+        break;
+    }
+}
+
+void showColorFromClick(Mat m,Point p)
+{
+	vector<Mat> channels;
+
+	split(m,channels);
+
+	int c1 = (int)channels[0].at<uchar>(p);
+	int c2 = (int)channels[1].at<uchar>(p);
+	int	c3 = (int)channels[2].at<uchar>(p);
+	
+	cout << "[" << c1 << "," << c2 << "," << c3 << "]\n";
 }

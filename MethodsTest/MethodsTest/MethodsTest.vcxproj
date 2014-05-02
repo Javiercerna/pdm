@@ -66,6 +66,7 @@
     <ClCompile Include="Methods.cpp" />
     <ClCompile Include="NormalizeColorsTest.cpp" />
     <ClCompile Include="SegmentColorTest.cpp" />
+    <ClCompile Include="SegmentNormalizedTest.cpp" />
     <ClCompile Include="VideoReadTest.cpp" />
   </ItemGroup>
   <ItemGroup>

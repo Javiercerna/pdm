@@ -1,4 +1,4 @@
-/*
+
 #include <cv.h>
 #include <highgui.h>
 #include <iostream>
@@ -20,9 +20,9 @@ int main()
 	if (option == 1)
 	{
 		// Uniform images
-		Mat mZeros = Mat(WIDTH,HEIGHT,CV_32FC3,Scalar(0.0,0.0,0.0));
-		Mat mOnes = Mat(WIDTH,HEIGHT,CV_32FC3,Scalar(1.0,1.0,1.0));
-		Mat mUniform = Mat(WIDTH,HEIGHT,CV_32FC3,Scalar(1.0/3,1.0/3,1.0/8));
+		Mat mZeros = Mat(WIDTH,HEIGHT,CV_16UC3,Scalar(0,0,0));
+		Mat mOnes = Mat(WIDTH,HEIGHT,CV_16UC3,Scalar(255,255,255));
+		Mat mUniform = Mat(WIDTH,HEIGHT,CV_16UC3,Scalar(255/3,255/3,255/8));
 
 		Mat mNormalized = normalizeColors(mOnes);
 	
@@ -37,15 +37,12 @@ int main()
 	{
 		// Real image
 		Mat rgb = imread("rgb.png");
-		Mat rgbF;
-		rgb.convertTo(rgbF,CV_32FC3);
-		rgbF /= 255.0;
-
-		Mat mNormalized = normalizeColors(rgbF);
+		
+		Mat mNormalized = normalizeColors(rgb);
 	
 		while(true)
 		{
-			imshow("Matrix image",rgbF);
+			imshow("Matrix image",rgb);
 			imshow("Matrix image normalized",mNormalized);
 			waitKey(30);
 		}
@@ -53,18 +50,21 @@ int main()
 	} else if (option == 3)
 	{
 		// Video
-		VideoCapture video("D:\Video.mov");
+		VideoCapture video("D:\MyVideo2.avi");
 
-		Mat frameF;
 		Mat normalized;
 		for (;;)
 		{
 			video >> frame;
+			
+			if (frame.empty())
+			{
+				break;
+			}
+
 			imshow("Main video",frame);
 		
-			frame.convertTo(frameF,CV_32FC3);
-			
-			normalized = normalizeColors(frameF);
+			normalized = normalizeColors(frame);
 			imshow("Normalized video",normalized);
 			waitKey(10);
 		}
@@ -72,4 +72,3 @@ int main()
 
 	return 0;
 }
-*/
