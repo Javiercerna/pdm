@@ -77,7 +77,7 @@ void drawMoments(Mat imageBW, Mat &original,double minArea)
 
 	for (int i = 0; i < contours.size(); i++)
 	{
-		if (mu[i].m01/mu[i].m00 > 0 && mu[i].m00 > minArea) // > 200 
+		if (mu[i].m01/mu[i].m00 > 200 && mu[i].m00 > minArea) // > 200 
 		{
 			boundRect.push_back(boundingRect(Mat(contours[i])));
 			cX.push_back(mu[i].m10/mu[i].m00);
@@ -88,7 +88,7 @@ void drawMoments(Mat imageBW, Mat &original,double minArea)
 	
 	for (int i = 0; i < area.size(); i++)
 	{
-		circle(original,Point(cX[i],cY[i]),20, Scalar(0,0,255),-1);
+		//circle(original,Point(cX[i],cY[i]),20, Scalar(0,0,255),-1);
 		rectangle(original, boundRect[i], Scalar(255,0,0), 2, 8, 0 );
 	}
 
@@ -111,7 +111,7 @@ void drawMoments(Mat imageBW, Mat &original,double minArea)
 
 }
 
-void drawFilledMoments(Mat imageBW, Mat &original,double minArea) 
+void drawFilledMoments(Mat imageBW, Mat &original,double minArea,Scalar tolerance) 
 {
 	vector<vector<Point> > contours;
 	vector<Vec4i> hierarchy;
@@ -132,7 +132,7 @@ void drawFilledMoments(Mat imageBW, Mat &original,double minArea)
 
 	for (int i = 0; i < contours.size(); i++)
 	{
-		if (mu[i].m01/mu[i].m00 > 0 && mu[i].m00 > minArea) // > 200 
+		if (mu[i].m01/mu[i].m00 > 200 && mu[i].m00 > minArea) // > 200 
 		{
 			boundRect.push_back(boundingRect(Mat(contours[i])));
 			cX.push_back(mu[i].m10/mu[i].m00);
@@ -141,12 +141,18 @@ void drawFilledMoments(Mat imageBW, Mat &original,double minArea)
 		}
 	}
 	
+	Mat mask = Mat::zeros(imageBW.rows,imageBW.cols,imageBW.type());
+	
 	for (int i = 0; i < area.size(); i++)
 	{
-		circle(original,Point(cX[i],cY[i]),20, Scalar(0,0,255),-1);
-		rectangle(original, boundRect[i], Scalar(255,0,0), 2, 8, 0 );
+		mask = mask | fillMask(original,Point(cX[i],cY[i]),tolerance,tolerance);
+		//circle(original,Point(cX[i],cY[i]),20, Scalar(0,0,255),-1);
+		//rectangle(original, boundRect[i], Scalar(255,0,0), 2, 8, 0 );
 	}
-
+	
+	drawMoments(mask,original,minArea);
+	imshow("Mask",mask);
+	
 	/*
 	int maxIndex = maxAreaIndex(area);
 	

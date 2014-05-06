@@ -62,10 +62,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CameraReadTest.cpp" />
     <ClCompile Include="ColorTypesTest.cpp" />
+    <ClCompile Include="FillSegmentedNormalized.cpp" />
     <ClCompile Include="FloodFillTest.cpp" />
     <ClCompile Include="Methods.cpp" />
     <ClCompile Include="NormalizeColorsTest.cpp" />
+    <ClCompile Include="ROISelection.cpp" />
     <ClCompile Include="SegmentColorTest.cpp" />
     <ClCompile Include="SegmentNormalizedTest.cpp" />
     <ClCompile Include="VideoReadTest.cpp" />
