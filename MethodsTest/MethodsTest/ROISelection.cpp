@@ -5,9 +5,15 @@
 using namespace std;
 using namespace cv;
 
+// Constants
+const int WIDTH = 640;
+const int HEIGHT = 480;
+const int upperBound = 134;
+const int lowerBound = 463;
+Rect rect = Rect(WIDTH/4,upperBound,WIDTH/2,lowerBound-upperBound); // Bounding rectangle
+
 // Global variables
 Mat frame;
-Rect rect = Rect(240,210,200,480-210); // Bounding rectangle
 
 int main()
 {
@@ -18,6 +24,7 @@ int main()
 	{
 		cam >> frame;
 		bounded = frame(rect);
+		circle(bounded,Point(50,50),5,Scalar(255,0,0),-1);
 		imshow("Main camera",frame);
 		imshow("Bounded",bounded);
 		waitKey(30);
