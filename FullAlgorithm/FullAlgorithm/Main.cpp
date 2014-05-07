@@ -11,8 +11,10 @@ using namespace cv;
 const int WIDTH = 640;
 const int HEIGHT = 480;
 const int minArea = 0; // Minimum area considered
-Scalar colorHSV(110,225,80); // Color detection parameters
-Scalar toleranceHSV(13,60,60);	
+Scalar colorHSV(42,165,200); // Color detection parameters
+Scalar toleranceHSV(6,90,55);
+Scalar armColorHSV;
+Scalar armToleranceHSV;
 const int upperBound = 134;
 const int lowerBound = 463;
 Rect rect = Rect(WIDTH/4,upperBound,WIDTH/2,lowerBound-upperBound); // Bounding rectangle
@@ -24,11 +26,14 @@ bool playerDetected = false;
 Mat frame;
 Mat ROI;
 
+KalmanFilter KF(4, 2, 0);
+Mat_<float> measurement(2,1);
+
 // Methods
 void keyHandler(char k);
 void detectPlayer();
 void setPlayerAttributes(double cX, double cY, double area);
-void trackPlayer();
+void detectHands();
 
 int main()
 {
@@ -38,21 +43,40 @@ int main()
 
 	char key;
 
+KF.transitionMatrix = *(Mat_<float>(4, 4) << 1,0,1,0,   0,1,0,1,  0,0,1,0,  0,0,0,1);
+measurement.setTo(Scalar(0));
+KF.statePre.at<float>(0) = 320;
+KF.statePre.at<float>(1) = 240;
+KF.statePre.at<float>(2) = 0;
+KF.statePre.at<float>(3) = 0;
+setIdentity(KF.measurementMatrix);
+setIdentity(KF.processNoiseCov, Scalar::all(1e-4));
+setIdentity(KF.measurementNoiseCov, Scalar::all(10));
+setIdentity(KF.errorCovPost, Scalar::all(.1));
+
+	//Point p(0,0);
 	while(true)
 	{
 		cam >> frame;
 		ROI = frame(rect);
-
-		if (!playerDetected)
+		//cvtColor(frame,frame,CV_BGR2HSV);
+		//setMouseCallback("Main video",mouseHandler,(void*)(&p));
+		/*
+		iF (p.x != 0 && p.y != 0)
 		{
-			detectPlayer();
-			player.printPlayer();
-		} else 
-		{
-			
-			trackPlayer();
+			showColorFromClick(frame,p);
+			p.x = 0;
+			p.y = 0;
 		}
+		*/
 
+		detectPlayer();
+
+		if (playerDetected) 
+		{
+			detectHands();
+		}
+		
 		imshow("Main video",frame);
 		imshow("ROI",ROI);
 		key = waitKey(30);
@@ -82,7 +106,22 @@ void detectPlayer()
 	imshow("Segmented",segmented);
 	playerAttributes = drawMoments(segmented,ROI,minArea);
 
-	setPlayerAttributes(playerAttributes[0],playerAttributes[1],playerAttributes[2]);
+	// First predict, to update the internal statePre variable
+	Mat prediction = KF.predict();
+	Point predictPt(prediction.at<float>(0),prediction.at<float>(1));
+             
+	// Get mouse point
+	measurement(0) = playerAttributes[0];
+	measurement(1) = playerAttributes[1];
+             
+	Point measPt(measurement(0),measurement(1));
+ 
+	// The "correct" phase that is going to use the predicted value and our measurement
+	Mat estimated = KF.correct(measurement);
+	Point statePt(estimated.at<float>(0),estimated.at<float>(1));
+	//circle(original,statePt,10, Scalar(255,0,0),-1);
+
+	setPlayerAttributes(statePt.x,statePt.y,playerAttributes[2]);
 	frameHSV.release();
 	segmented.release();
 }
@@ -94,11 +133,11 @@ void setPlayerAttributes(double cX, double cY, double area)
 		player.setCX(cX);
 		player.setCY(cY);
 		player.setArea(area);
-		//playerDetected = true;
+		playerDetected = true;
 	}
 }
 
-void trackPlayer()
+void detectHands()
 {
 
 }
