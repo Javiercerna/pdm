@@ -1,7 +1,6 @@
 #include <cv.h>
 #include <highgui.h>
 #include <iostream>
-#include "Player.h"
 #include "Methods.h"
 
 using namespace std;
@@ -10,11 +9,11 @@ using namespace cv;
 // Constants
 const int WIDTH = 640;
 const int HEIGHT = 480;
-const int minArea = 0; // Minimum area considered
+const int minArea = 100; // Minimum area considered
 Scalar colorHSV(42,165,200); // Color detection parameters
 Scalar toleranceHSV(6,90,55);
-Scalar armColorHSV;
-Scalar armToleranceHSV;
+Scalar armColorHSV(0,0,0);
+Scalar armToleranceHSV(0,0,0);
 const int upperBound = 134;
 const int lowerBound = 463;
 Rect rect = Rect(WIDTH/4,upperBound,WIDTH/2,lowerBound-upperBound); // Bounding rectangle
@@ -71,7 +70,7 @@ setIdentity(KF.errorCovPost, Scalar::all(.1));
 		*/
 
 		detectPlayer();
-
+		player.printPlayer();
 		if (playerDetected) 
 		{
 			detectHands();
@@ -99,13 +98,13 @@ void detectPlayer()
 
 	cvtColor(ROI,frameHSV,CV_BGR2HSV);
 	segmented = segmentColor(frameHSV,colorHSV,toleranceHSV);
-			
-	erode(segmented,segmented,STREL);
+	
 	dilate(segmented,segmented,STREL);
+	erode(segmented,segmented,STREL);
 
 	imshow("Segmented",segmented);
 	playerAttributes = drawMoments(segmented,ROI,minArea);
-
+	/*
 	// First predict, to update the internal statePre variable
 	Mat prediction = KF.predict();
 	Point predictPt(prediction.at<float>(0),prediction.at<float>(1));
@@ -114,14 +113,16 @@ void detectPlayer()
 	measurement(0) = playerAttributes[0];
 	measurement(1) = playerAttributes[1];
              
-	Point measPt(measurement(0),measurement(1));
+	//Point measPt(measurement(0),measurement(1));
  
 	// The "correct" phase that is going to use the predicted value and our measurement
 	Mat estimated = KF.correct(measurement);
 	Point statePt(estimated.at<float>(0),estimated.at<float>(1));
-	//circle(original,statePt,10, Scalar(255,0,0),-1);
-
-	setPlayerAttributes(statePt.x,statePt.y,playerAttributes[2]);
+	circle(ROI,statePt,10, Scalar(255,0,0),-1);
+	
+	setPlayerAttributes(estimated.at<float>(0),estimated.at<float>(1),playerAttributes[2]);
+	*/
+	setPlayerAttributes(playerAttributes[0],playerAttributes[1],playerAttributes[2]);
 	frameHSV.release();
 	segmented.release();
 }
@@ -139,5 +140,47 @@ void setPlayerAttributes(double cX, double cY, double area)
 
 void detectHands()
 {
+	Mat frameHSV;
+	Mat segmented;
+	vector<double> handAttributes = vector<double>(6); // [cX,cY,area]
 
+	cvtColor(ROI,frameHSV,CV_BGR2HSV);
+	segmented = segmentColor(frameHSV,armColorHSV,armToleranceHSV);
+			
+	erode(segmented,segmented,STREL);
+	dilate(segmented,segmented,STREL);
+
+	imshow("Segmented",segmented);
+	handAttributes = drawMoments(segmented,ROI,0, player);
+
+	player.setLeftHand(Hand(handAttributes[0],handAttributes[1],handAttributes[2]));
+	player.setRightHand(Hand(handAttributes[3],handAttributes[4],handAttributes[5]));
+
+	/*
+	// First predict, to update the internal statePre variable
+	Mat prediction = KF.predict();
+	Point predictPt(prediction.at<float>(0),prediction.at<float>(1));
+             
+	// Get mouse point
+	measurement(0) = handAttributes[0];
+	measurement(1) = handAttributes[1];
+             
+	//Point measPt(measurement(0),measurement(1));
+ 
+	// The "correct" phase that is going to use the predicted value and our measurement
+	Mat estimated = KF.correct(measurement);
+	//Point statePt(estimated.at<float>(0),estimated.at<float>(1));
+	//circle(original,statePt,10, Scalar(255,0,0),-1);
+
+	prediction = KF.predict();
+	predictPt = Point(prediction.at<float>(0),prediction.at<float>(1));
+
+	measurement(0) = handAttributes[3];
+	measurement(1) = handAttributes[4];
+
+	estimated = KF.correct(measurement);
+	//setPlayerAttributes(estimated.at<float>(0),estimated.at<float>(1),playerAttributes[2]);
+	*/
+	frameHSV.release();
+	segmented.release();
 }

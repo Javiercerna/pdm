@@ -1,32 +1,55 @@
-﻿Compilación iniciada a las 07/05/2014 01:47:23 p.m..
-     1>Proyecto "C:\Users\Javier\github\pdm\pdm-master (kalman)\FullAlgorithm\FullAlgorithm\FullAlgorithm.vcxproj" en el nodo 2 (build destinos).
+﻿Compilación iniciada a las 21/05/2014 01:25:23 p.m..
+     1>Proyecto "C:\Users\Javier\github\pdm\FullAlgorithm\FullAlgorithm\FullAlgorithm.vcxproj" en el nodo 2 (build destinos).
      1>InitializeBuildStatus:
          Se creará "Debug\FullAlgorithm.unsuccessfulbuild" porque se especificó "AlwaysCreate".
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\opencv248\build\include\opencv2 /IC:\opencv248\build\include\opencv /IC:\opencv248\build\include /ID:\opencv\build\include\opencv2 /ID:\opencv\build\include /ID:\opencv\build\include\opencv /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
-         Main.cpp
-     1>c:\users\javier\github\pdm\pdm-master (kalman)\fullalgorithm\fullalgorithm\main.cpp(112): warning C4244: 'argumento' : conversión de 'float' a 'int'; posible pérdida de datos
-     1>c:\users\javier\github\pdm\pdm-master (kalman)\fullalgorithm\fullalgorithm\main.cpp(112): warning C4244: 'argumento' : conversión de 'float' a 'int'; posible pérdida de datos
-     1>c:\users\javier\github\pdm\pdm-master (kalman)\fullalgorithm\fullalgorithm\main.cpp(115): warning C4244: '=' : conversión de 'double' a 'float'; posible pérdida de datos
-     1>c:\users\javier\github\pdm\pdm-master (kalman)\fullalgorithm\fullalgorithm\main.cpp(116): warning C4244: '=' : conversión de 'double' a 'float'; posible pérdida de datos
-     1>c:\users\javier\github\pdm\pdm-master (kalman)\fullalgorithm\fullalgorithm\main.cpp(118): warning C4244: 'argumento' : conversión de 'float' a 'int'; posible pérdida de datos
-     1>c:\users\javier\github\pdm\pdm-master (kalman)\fullalgorithm\fullalgorithm\main.cpp(118): warning C4244: 'argumento' : conversión de 'float' a 'int'; posible pérdida de datos
-     1>c:\users\javier\github\pdm\pdm-master (kalman)\fullalgorithm\fullalgorithm\main.cpp(122): warning C4244: 'argumento' : conversión de 'float' a 'int'; posible pérdida de datos
-     1>c:\users\javier\github\pdm\pdm-master (kalman)\fullalgorithm\fullalgorithm\main.cpp(122): warning C4244: 'argumento' : conversión de 'float' a 'int'; posible pérdida de datos
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\opencv248\build\include\opencv2 /IC:\opencv248\build\include\opencv /IC:\opencv248\build\include /ID:\opencv\build\include\opencv2 /ID:\opencv\build\include /ID:\opencv\build\include\opencv /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Methods.cpp
+         Methods.cpp
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(70): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(80): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(115): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(126): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(128): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(128): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(128): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(128): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(144): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(146): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(146): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(146): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(146): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(147): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(147): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(147): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(147): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(156): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(156): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(156): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(156): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(163): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(163): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(163): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(163): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(182): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(192): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(205): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(207): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(207): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\users\javier\github\pdm\fullalgorithm\fullalgorithm\methods.cpp(239): warning C4018: '<' : no coinciden signed/unsigned
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Javier\github\pdm\pdm-master (kalman)\FullAlgorithm\Debug\FullAlgorithm.exe" /NOLOGO /LIBPATH:C:\opencv248\build\x86\vc10\lib /LIBPATH:C:\opencv248\build\x86\vc10\bin /LIBPATH:D:\opencv\build\x86\vc10\bin /LIBPATH:D:\opencv\build\x86\vc10\lib opencv_core248d.lib opencv_imgproc248d.lib opencv_highgui248d.lib opencv_ml248d.lib opencv_video248d.lib opencv_features2d248d.lib opencv_calib3d248d.lib opencv_objdetect248d.lib opencv_contrib248d.lib opencv_legacy248d.lib opencv_flann248d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\FullAlgorithm.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Javier\github\pdm\pdm-master (kalman)\FullAlgorithm\Debug\FullAlgorithm.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Javier\github\pdm\pdm-master (kalman)\FullAlgorithm\Debug\FullAlgorithm.lib" /MACHINE:X86 Debug\Hand.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Javier\github\pdm\FullAlgorithm\Debug\FullAlgorithm.exe" /NOLOGO /LIBPATH:C:\opencv248\build\x86\vc10\lib /LIBPATH:C:\opencv248\build\x86\vc10\bin /LIBPATH:D:\opencv\build\x86\vc10\bin /LIBPATH:D:\opencv\build\x86\vc10\lib opencv_core248d.lib opencv_imgproc248d.lib opencv_highgui248d.lib opencv_ml248d.lib opencv_video248d.lib opencv_features2d248d.lib opencv_calib3d248d.lib opencv_objdetect248d.lib opencv_contrib248d.lib opencv_legacy248d.lib opencv_flann248d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\FullAlgorithm.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Javier\github\pdm\FullAlgorithm\Debug\FullAlgorithm.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Javier\github\pdm\FullAlgorithm\Debug\FullAlgorithm.lib" /MACHINE:X86 Debug\Hand.obj
          Debug\Main.obj
          Debug\Methods.obj
          Debug\Player.obj
-         LINK : no se encontró C:\Users\Javier\github\pdm\pdm-master (kalman)\FullAlgorithm\Debug\FullAlgorithm.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
-         FullAlgorithm.vcxproj -> C:\Users\Javier\github\pdm\pdm-master (kalman)\FullAlgorithm\Debug\FullAlgorithm.exe
+         LINK : no se encontró C:\Users\Javier\github\pdm\FullAlgorithm\Debug\FullAlgorithm.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
+         FullAlgorithm.vcxproj -> C:\Users\Javier\github\pdm\FullAlgorithm\Debug\FullAlgorithm.exe
        Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\Javier\github\pdm\pdm-master (kalman)\FullAlgorithm\Debug\FullAlgorithm.exe;#1" /manifest Debug\FullAlgorithm.exe.intermediate.manifest
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\Javier\github\pdm\FullAlgorithm\Debug\FullAlgorithm.exe;#1" /manifest Debug\FullAlgorithm.exe.intermediate.manifest
        FinalizeBuildStatus:
          Se eliminará el archivo "Debug\FullAlgorithm.unsuccessfulbuild".
          Aplicando tarea Touch a "Debug\FullAlgorithm.lastbuildstate".
-     1>Compilación del proyecto terminada "C:\Users\Javier\github\pdm\pdm-master (kalman)\FullAlgorithm\FullAlgorithm\FullAlgorithm.vcxproj" (build destinos).
+     1>Compilación del proyecto terminada "C:\Users\Javier\github\pdm\FullAlgorithm\FullAlgorithm\FullAlgorithm.vcxproj" (build destinos).
 
 Compilación correcta.
 
-Tiempo transcurrido 00:00:04.36
+Tiempo transcurrido 00:00:04.38
