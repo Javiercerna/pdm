@@ -31,6 +31,20 @@ double Player::getArea()
 	return this->area;
 }
 
+double Player::getVelX()
+{
+	return this->velX;
+}
+
+Hand Player::getLeftHand()
+{
+	return this->leftHand;
+}
+
+Hand Player::getRightHand()
+{
+	return this->rightHand;
+}
 // Sets
 
 void Player::setCX(double cX)
@@ -46,6 +60,11 @@ void Player::setCY(double cY)
 void Player::setArea(double area)
 {
 	this->area = area;
+}
+
+void Player::setVelX(double velX)
+{
+	this->velX = velX;
 }
 
 void Player::setLeftHand(Hand leftHand)
